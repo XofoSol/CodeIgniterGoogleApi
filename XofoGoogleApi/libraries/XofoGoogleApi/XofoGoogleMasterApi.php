@@ -10,6 +10,7 @@ abstract class XofoGoogleMasterApi {
 
 	protected $client;
 	protected $service;
+	public $url;
 	
 	/**
 	 * __construct
@@ -36,8 +37,7 @@ abstract class XofoGoogleMasterApi {
 			$this->client->setAccessToken($CI->session->userdata('token'));
 		}
 		if(!$this->client->getAccessToken() || $this->client->isAccessTokenExpired($this->client->getAccessToken())){
-			$url = $this->client->createAuthUrl();
-			header('Location: '.$url);
+			$this->url = $this->client->createAuthUrl();
 		}
 		
 	}
